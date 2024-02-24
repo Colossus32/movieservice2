@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableMovies
+      author: Colossus
+      changes:
+        - createTable:
+            tableName: movies
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: posterURL
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true

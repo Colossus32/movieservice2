@@ -1,11 +1,15 @@
 package com.colossus.movieservice2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
+@Data
 @Entity
 @NoArgsConstructor
+@Table(name = "movies")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
     @Id
@@ -13,8 +17,8 @@ public class Movie {
     private long id;
 
     @Column(nullable = false, unique = true)
-    private String title;
+    private String nameRu;
 
     @Column(nullable = false, unique = true)
-    private String posterPath;
+    private String posterUrl;
 }

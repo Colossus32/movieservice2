@@ -1,0 +1,8 @@
+# Настройки подключения к базе данных
+url: jdbc:postgresql://localhost:5432/postgres
+username: postgres
+password: postgres
+driver: org.postgresql.Driver
+
+# Настройки Liquibase
+changeLogFile: db/changelog/db.changelog-master.yaml

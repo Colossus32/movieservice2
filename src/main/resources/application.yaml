@@ -13,3 +13,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: create-drop
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.yaml
+
+apikey: "58f1d01c-65c6-4182-a8f0-f9891b1a63fe"
+cronExpression: "*/3 * * * * *"

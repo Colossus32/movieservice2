@@ -1,4 +1,4 @@
 package com.colossus.movieservice2.entity;
 
-public record UserRegistrationRequest(String name, String username, String email) {
+public record UserRegistrationRequest(String email, String username, String name) {
 }

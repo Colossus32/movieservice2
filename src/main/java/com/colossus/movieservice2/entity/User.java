@@ -6,9 +6,10 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @NoArgsConstructor
-@Data
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,8 +21,7 @@ public class User {
     private String email;
 
     @Column(nullable = false, unique = true)
-    @Pattern(regexp = "^[a-zA-Z]*$",
-            message = "Username must contain only Latin alphabet letters")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Username must contain only Latin alphabet letters")
     private String username;
 
     private String name;
