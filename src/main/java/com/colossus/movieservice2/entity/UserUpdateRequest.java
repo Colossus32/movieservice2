@@ -1,4 +1,4 @@
 package com.colossus.movieservice2.entity;
 
-public record UserUpdateRequest(String name, String username) {
+public record UserUpdateRequest(String username, String name) {
 }

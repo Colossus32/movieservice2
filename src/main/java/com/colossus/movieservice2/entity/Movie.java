@@ -21,4 +21,9 @@ public class Movie {
 
     @Column(nullable = false, unique = true)
     private String posterUrl;
+
+    public Movie(String nameRu, String posterUrl) {
+        this.nameRu = nameRu;
+        this.posterUrl = posterUrl;
+    }
 }
