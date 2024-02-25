@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableMovies
+      author: Colossus
+      changes:
+        - createTable:
+            tableName: favorite_movie
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: movie_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false

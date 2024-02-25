@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/001-initial-user-table.yaml
   - include:
       file: db/changelog/002-initial-movie-table.yaml
+  - include:
+      file: db/changelog/003-initial-favorite-movie-table.yaml
