@@ -19,6 +19,7 @@ public class UserController {
 
     private final UserService userService;
 
+
     /**
      * Handles user registration request
      *
@@ -27,17 +28,13 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<?> userRegistration(@RequestBody UserRegistrationRequest request) {
-        // Log the user registration request
         log.info("Received user registration request: {}", request);
 
         // Register a new user based on the provided request
         if (!userService.registerUser(request)) {
-            // Log the internal server error
             log.error("Internal server error occurred during user registration");
             return internalError(); // Return an internal server error response
         }
-
-        // Log the successful response
         log.info("User registration successful");
         return ResponseEntity.ok().build(); // Return a successful response
     }

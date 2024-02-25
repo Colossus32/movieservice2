@@ -20,21 +20,27 @@ public class MovieController {
 
     private final MovieService movieService;
 
+    private final String PAGE_CONST = "0";
+    private final String SIZE_CONST = "15";
 
+
+    /**
+     * Get a list of movies with pagination
+     *
+     * @param page page number
+     * @param size number of items per page
+     * @return ResponseEntity with the list of movies
+     */
     @GetMapping
     public ResponseEntity<?> getMovies(
-            @RequestParam(defaultValue = "0") int page,  // page number
-            @RequestParam(defaultValue = "15") int size  // number of items per page
+            @RequestParam(defaultValue = PAGE_CONST) int page,  // page number
+            @RequestParam(defaultValue = SIZE_CONST) int size  // number of items per page
     ) {
-        // log the request parameters
         log.debug("Fetching movies with page: " + page + " and size: " + size);
 
-        // retrieve movies from the service
         List<Movie> movies = movieService.getMovies(page, size);
 
-        // log the number of movies fetched
         log.debug("Fetched " + movies.size() + " movies");
-
         // return the list of movies in a ResponseEntity
         return ResponseEntity.ok(movies);
     }

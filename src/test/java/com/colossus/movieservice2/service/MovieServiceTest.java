@@ -73,4 +73,8 @@ class MovieServiceTest {
         verifyNoInteractions(movieRepository);
     }
 
+    @Test
+    void updateMovieList_SaveNewMovies() {
+        // todo: implement complicated test
+    }
 }
