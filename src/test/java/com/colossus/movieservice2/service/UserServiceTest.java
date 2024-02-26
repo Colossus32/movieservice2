@@ -30,7 +30,7 @@ class UserServiceTest {
 
 
     @Test
-    public void testRegisterUser_SuccessfulRegistration() {
+    void testRegisterUser_SuccessfulRegistration() {
         // Prepare test data
         UserRegistrationRequest request = new UserRegistrationRequest("test@example.com", "testuser", "Test User");
 
@@ -54,7 +54,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testRegisterUser_InvalidRegistrationRequest() {
+    void testRegisterUser_InvalidRegistrationRequest() {
         // Prepare invalid test data (e.g., missing required fields)
         UserRegistrationRequest request = new UserRegistrationRequest(null, null, null);
 
@@ -69,7 +69,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testFindById_UserExists() {
+    void testFindById_UserExists() {
         // Prepare test data
         long userId = 1L;
         User user = new User("test@example.com", "testuser", "Test User");
@@ -86,7 +86,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testFindById_UserDoesNotExist() {
+    void testFindById_UserDoesNotExist() {
         // Prepare test data
         long userId = 1L;
 
@@ -101,7 +101,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUser_UserExistsAndUpdatedSuccessfully() {
+    void testUpdateUser_UserExistsAndUpdatedSuccessfully() {
         // Prepare test data
         long userId = 1L;
         UserUpdateRequest updateRequest = new UserUpdateRequest("updateduser", "Updated Name");
@@ -123,7 +123,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUser_UserDoesNotExist() {
+    void testUpdateUser_UserDoesNotExist() {
         // Prepare test data
         long userId = 1L;
         UserUpdateRequest updateRequest = new UserUpdateRequest("updateduser", "Updated Name");
@@ -139,7 +139,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUser_UsernameAlreadyExists() {
+    void testUpdateUser_UsernameAlreadyExists() {
         // Prepare test data
         long userId = 1L;
         UserUpdateRequest updateRequest = new UserUpdateRequest("existinguser", "Updated Name");
@@ -157,7 +157,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testDeleteUser_UserExists() {
+    void testDeleteUser_UserExists() {
         // Prepare test data
         long userId = 1L;
         User existingUser = new User("test@example.com", "testuser", "Test User");
@@ -174,7 +174,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testDeleteUser_UserDoesNotExist() {
+    void testDeleteUser_UserDoesNotExist() {
         // Prepare test data
         long userId = 1L;
 

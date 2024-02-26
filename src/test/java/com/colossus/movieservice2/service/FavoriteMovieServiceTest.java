@@ -20,12 +20,11 @@ class FavoriteMovieServiceTest {
 
     private FavoriteMovieService favoriteMovieService;
     private FavoriteMovieRepository favoriteMovieRepository;
-    private MovieRepository movieRepository;
 
     @BeforeEach
     void setUp() {
         favoriteMovieRepository = mock(FavoriteMovieRepository.class);
-        movieRepository = mock(MovieRepository.class);
+        MovieRepository movieRepository = mock(MovieRepository.class);
         favoriteMovieService = new FavoriteMovieService(favoriteMovieRepository, movieRepository);
     }
 

@@ -77,7 +77,7 @@ public class MovieService {
 
         } catch (IOException | InterruptedException e) {
             log.error("Error occurred while updating movie list", e);
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
         }
     }
 

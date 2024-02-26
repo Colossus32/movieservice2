@@ -2,6 +2,8 @@ package com.colossus.movieservice2.controller;
 
 import com.colossus.movieservice2.entity.Movie;
 import com.colossus.movieservice2.service.MovieService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +18,13 @@ import java.util.List;
 @RequestMapping("api/v1/movies")
 @RequiredArgsConstructor
 @Slf4j
+@Api(tags = "Movie")
 public class MovieController {
 
     private final MovieService movieService;
 
-    private final String PAGE_CONST = "0";
-    private final String SIZE_CONST = "15";
+    private static final String PAGE = "0";
+    private static final String SIZE = "15";
 
 
     /**
@@ -32,9 +35,10 @@ public class MovieController {
      * @return ResponseEntity with the list of movies
      */
     @GetMapping
-    public ResponseEntity<?> getMovies(
-            @RequestParam(defaultValue = PAGE_CONST) int page,  // page number
-            @RequestParam(defaultValue = SIZE_CONST) int size  // number of items per page
+    @ApiOperation(value = "Get a list of movies with pagination")
+    public ResponseEntity<List<Movie>> getMovies(
+            @RequestParam(defaultValue = PAGE) int page,  // page number
+            @RequestParam(defaultValue = SIZE) int size  // number of items per page
     ) {
         log.debug("Fetching movies with page: " + page + " and size: " + size);
 

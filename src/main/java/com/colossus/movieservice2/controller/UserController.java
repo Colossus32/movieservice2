@@ -4,6 +4,7 @@ import com.colossus.movieservice2.entity.User;
 import com.colossus.movieservice2.entity.UserRegistrationRequest;
 import com.colossus.movieservice2.entity.UserUpdateRequest;
 import com.colossus.movieservice2.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ public class UserController {
      * @return ResponseEntity with the result of the user registration
      */
     @PostMapping
-    public ResponseEntity<?> userRegistration(@RequestBody UserRegistrationRequest request) {
+    @ApiOperation(value = "Register a new user")
+    public ResponseEntity<String> userRegistration(@RequestBody UserRegistrationRequest request) {
         log.info("Received user registration request: {}", request);
 
         // Register a new user based on the provided request
@@ -47,7 +49,8 @@ public class UserController {
      * @return ResponseEntity with the user information if authorized, 403 status if unauthorized, or 404 status if user not found
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUser(@PathVariable long id, @RequestHeader("User-Id") String userId) {
+    @ApiOperation(value = "Get user by ID")
+    public ResponseEntity<User> getUser(@PathVariable long id, @RequestHeader("User-Id") String userId) {
         // Check if the requesting user is authorized to access the user information
         if (!isAuthorized(Long.parseLong(userId), id)) {
             return ResponseEntity.status(403).build();
@@ -56,11 +59,8 @@ public class UserController {
         // Retrieve the user information by ID
         Optional<User> user = userService.findById(id);
         // If the user is not found, return 404 status
-        if (user.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         // Return the user information
-        return ResponseEntity.ok(user.get());
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /**
@@ -72,7 +72,8 @@ public class UserController {
      * @return ResponseEntity with status 200 if successful, 403 if not authorized, or 500 for internal error
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable long id, @RequestHeader("User-Id") long userId,
+    @ApiOperation(value = "Update user information")
+    public ResponseEntity<String> updateUser(@PathVariable long id, @RequestHeader("User-Id") long userId,
                                         @RequestBody UserUpdateRequest updateRequest) {
 
         // Check if user is authorized to update
@@ -98,7 +99,8 @@ public class UserController {
      * @return ResponseEntity with status 403 if not authorized, ResponseEntity with status 500 if user deletion fails, otherwise ResponseEntity with status 200
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable long id, @RequestHeader("User-Id") long userId) {
+    @ApiOperation(value = "Delete a user")
+    public ResponseEntity<String> deleteUser(@PathVariable long id, @RequestHeader("User-Id") long userId) {
 
         // Check if the requesting user is authorized to delete the specified user
         if (!isAuthorized(userId, id)) {
@@ -123,7 +125,7 @@ public class UserController {
      * @return ResponseEntity<String> - the response entity with the error message
      */
     private ResponseEntity<String> internalError() {
-        String INTERNAL_SERVER_ERROR_MESSAGE = "{\"error\": \"INTERNAL_ERROR\"}";
+        final String INTERNAL_SERVER_ERROR_MESSAGE = "{\"error\": \"INTERNAL_ERROR\"}";
         return ResponseEntity.status(500).body(INTERNAL_SERVER_ERROR_MESSAGE);
     }
 

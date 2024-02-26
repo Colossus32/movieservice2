@@ -37,7 +37,7 @@ class MovieServiceTest {
     }
 
     @Test
-    public void testGetMovies_ValidPageAndQuantity() {
+    void testGetMovies_ValidPageAndQuantity() {
         // Prepare test data
         int page = 0;
         int quantity = 10;
@@ -61,7 +61,7 @@ class MovieServiceTest {
     }
 
     @Test
-    public void testGetMovies_InvalidPageOrQuantity() {
+    void testGetMovies_InvalidPageOrQuantity() {
         // Prepare test data
         int invalidPage = -1;
         int invalidQuantity = -10;

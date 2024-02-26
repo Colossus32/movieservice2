@@ -130,7 +130,7 @@ public class FavoriteMovieService {
         // Filter out the movies that have been favorited by the user
         List<Movie> notFavoritedMovies = movies.stream()
                 .filter(movie -> !favoriteMovieIds.contains(movie.getId()))
-                .collect(Collectors.toList());
+                .toList();
 
         log.debug("Retrieved {} not favorited movies for user with ID {}", notFavoritedMovies.size(), userId);
 
