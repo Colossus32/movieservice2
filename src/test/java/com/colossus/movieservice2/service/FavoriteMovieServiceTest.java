@@ -135,7 +135,6 @@ class FavoriteMovieServiceTest {
 
         // Then
         assert result != null; // Ensure result is not null
-        // Add additional assertions based on the behavior of discoverMoviesBySQL()
     }
 
     @Test
@@ -149,7 +148,6 @@ class FavoriteMovieServiceTest {
 
         // Then
         assert result != null; // Ensure result is not null
-        // Add additional assertions based on the behavior of discoverMoviesInMemory()
     }
 
     @Test
