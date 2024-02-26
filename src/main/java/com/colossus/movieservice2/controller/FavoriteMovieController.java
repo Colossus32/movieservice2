@@ -3,8 +3,6 @@ package com.colossus.movieservice2.controller;
 import com.colossus.movieservice2.entity.FavoriteMovie;
 import com.colossus.movieservice2.entity.Movie;
 import com.colossus.movieservice2.service.FavoriteMovieService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/favorites")
 @Slf4j
-@Api(tags = "Favorite Movie")
 public class FavoriteMovieController {
 
     private final FavoriteMovieService favoriteMovieService;
@@ -32,7 +29,6 @@ public class FavoriteMovieController {
      * or internal server error if there was an error
      */
     @PostMapping
-    @ApiOperation(value = "Add a movie to user's favorites")
     public ResponseEntity<String> addFavoriteMovie(@RequestHeader("User-Id") String headerId,
                                               @RequestParam("user") long userId, @RequestParam("movie") long movieId) {
 
@@ -63,7 +59,6 @@ public class FavoriteMovieController {
      * @return ResponseEntity with status 200 if the movie is successfully deleted, 403 if not authorized, or an internal error
      */
     @DeleteMapping
-    @ApiOperation(value = "Delete a movie from user's favorites")
     public ResponseEntity<String> deleteFavoriteMovie(@RequestHeader("User-Id") String headerId,
                                                  @RequestParam("user") long userId, @RequestParam("movie") long movieId) {
 
@@ -94,7 +89,6 @@ public class FavoriteMovieController {
      * @return the list of favorite movies for the user
      */
     @GetMapping("/{id}")
-    @ApiOperation(value = "Get the list of favorite movies for a user")
     public ResponseEntity<List<FavoriteMovie>> getFavoriteMovies(@RequestHeader("User-Id") String headerId,
                                                                  @PathVariable("id") long userId) {
 
@@ -120,7 +114,6 @@ public class FavoriteMovieController {
      * @return ResponseEntity with a list of movies
      */
     @GetMapping("/discover")
-    @ApiOperation(value = "Discover movies")
     public ResponseEntity<List<Movie>> discoverMovies(@RequestHeader("User-Id") String headerId,
                                                       @RequestParam("user") long userId,
                                                       @RequestParam("loaderType") String loaderType) {

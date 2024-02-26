@@ -2,8 +2,6 @@ package com.colossus.movieservice2.controller;
 
 import com.colossus.movieservice2.entity.Movie;
 import com.colossus.movieservice2.service.MovieService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,6 @@ import java.util.List;
 @RequestMapping("api/v1/movies")
 @RequiredArgsConstructor
 @Slf4j
-@Api(tags = "Movie")
 public class MovieController {
 
     private final MovieService movieService;
@@ -35,7 +32,6 @@ public class MovieController {
      * @return ResponseEntity with the list of movies
      */
     @GetMapping
-    @ApiOperation(value = "Get a list of movies with pagination")
     public ResponseEntity<List<Movie>> getMovies(
             @RequestParam(defaultValue = PAGE) int page,  // page number
             @RequestParam(defaultValue = SIZE) int size  // number of items per page

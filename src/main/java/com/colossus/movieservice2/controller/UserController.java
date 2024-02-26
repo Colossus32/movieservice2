@@ -4,7 +4,6 @@ import com.colossus.movieservice2.entity.User;
 import com.colossus.movieservice2.entity.UserRegistrationRequest;
 import com.colossus.movieservice2.entity.UserUpdateRequest;
 import com.colossus.movieservice2.service.UserService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +27,6 @@ public class UserController {
      * @return ResponseEntity with the result of the user registration
      */
     @PostMapping
-    @ApiOperation(value = "Register a new user")
     public ResponseEntity<String> userRegistration(@RequestBody UserRegistrationRequest request) {
         log.info("Received user registration request: {}", request);
 
@@ -49,7 +47,6 @@ public class UserController {
      * @return ResponseEntity with the user information if authorized, 403 status if unauthorized, or 404 status if user not found
      */
     @GetMapping("/{id}")
-    @ApiOperation(value = "Get user by ID")
     public ResponseEntity<User> getUser(@PathVariable long id, @RequestHeader("User-Id") String userId) {
         // Check if the requesting user is authorized to access the user information
         if (!isAuthorized(Long.parseLong(userId), id)) {
@@ -72,7 +69,6 @@ public class UserController {
      * @return ResponseEntity with status 200 if successful, 403 if not authorized, or 500 for internal error
      */
     @PutMapping("/{id}")
-    @ApiOperation(value = "Update user information")
     public ResponseEntity<String> updateUser(@PathVariable long id, @RequestHeader("User-Id") long userId,
                                         @RequestBody UserUpdateRequest updateRequest) {
 
@@ -99,7 +95,6 @@ public class UserController {
      * @return ResponseEntity with status 403 if not authorized, ResponseEntity with status 500 if user deletion fails, otherwise ResponseEntity with status 200
      */
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Delete a user")
     public ResponseEntity<String> deleteUser(@PathVariable long id, @RequestHeader("User-Id") long userId) {
 
         // Check if the requesting user is authorized to delete the specified user
