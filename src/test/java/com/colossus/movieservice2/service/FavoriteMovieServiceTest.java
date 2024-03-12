@@ -4,6 +4,7 @@ import com.colossus.movieservice2.entity.FavoriteMovie;
 import com.colossus.movieservice2.entity.Movie;
 import com.colossus.movieservice2.repository.FavoriteMovieRepository;
 import com.colossus.movieservice2.repository.MovieRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -134,7 +135,7 @@ class FavoriteMovieServiceTest {
         List<Movie> result = favoriteMovieService.discoverMovies(userId, loaderType);
 
         // Then
-        assert result != null; // Ensure result is not null
+        Assertions.assertNotNull(result); // Ensure result is not null
     }
 
     @Test
@@ -147,7 +148,7 @@ class FavoriteMovieServiceTest {
         List<Movie> result = favoriteMovieService.discoverMovies(userId, loaderType);
 
         // Then
-        assert result != null; // Ensure result is not null
+        Assertions.assertNotNull(result); // Ensure result is not null
     }
 
     @Test
@@ -160,7 +161,7 @@ class FavoriteMovieServiceTest {
         List<Movie> result = favoriteMovieService.discoverMovies(userId, loaderType);
 
         // Then
-        assert result != null; // Ensure result is not null
-        assert result.isEmpty(); // Ensure empty list is returned for unknown loader type
+        Assertions.assertNotNull(result);// Ensure result is not null
+        Assertions.assertTrue(result.isEmpty());// Ensure empty list is returned for unknown loader type
     }
 }

@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
-    url: jdbc:postgresql://postgres:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgres
 
   jpa:
     show-sql: true
@@ -17,4 +17,4 @@ spring:
     change-log: classpath:db/changelog/changelog-master.yaml
 
 apikey: "58f1d01c-65c6-4182-a8f0-f9891b1a63fe"
-cronExpression: "0 0 */3 * * *"
+cronExpression: "*/5 * * * * *"

@@ -13,6 +13,11 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   pgadmin:
     container_name: pgadmin
@@ -28,6 +33,19 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+
+  movieservice2:
+    container_name: movieservice2
+    image: colossus32/movieservice2-image:latest
+    ports:
+      - "8090:8090"
+    networks:
+      - spring
+      - postgres
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 networks:
   postgres:
